@@ -1,7 +1,3 @@
 #!/bin/bash
 IFS='.' read -r o1 o2 o3 o4 <<< "$1"
-for octet in "$o1" "$o2" "$o3" "$o4"; do
-    printf '%08d' "$(echo "ibase=10; obase=2; $octet" | bc)"
-    [[ "$octet" != "$o4" ]] && printf '.'
-done
-printf '\n'
+printf '%08d.%08d.%08d.%08d\n' $(echo "ibase=10;obase=2;$o1" | bc) $(echo "ibase=10;obase=2;$o2" | bc) $(echo "ibase=10;obase=2;$o3" | bc) $(echo "ibase=10;obase=2;$o4" | bc)
