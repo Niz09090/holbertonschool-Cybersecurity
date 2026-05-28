@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 -c "import ipaddress; print(ipaddress.IPv4Network('0.0.0.0/$1').netmask)"
+mask=$(( 0xFFFFFFFF << (32 - $1) & 0xFFFFFFFF )); printf '%d.%d.%d.%d\n' $(( (mask>>24)&255 )) $(( (mask>>16)&255 )) $(( (mask>>8)&255 )) $(( mask&255 ))
